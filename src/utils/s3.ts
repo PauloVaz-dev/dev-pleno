@@ -5,8 +5,8 @@ export class S3 {
   constructor() {
     aws.config.update({
       region: 'us-east-1',
-      accessKeyId: 'AKIAZ4OJECCGOCWQ3HAX',
-      secretAccessKey: '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',
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.SECRET_ACCESS_KEY,
     });
   }
   async upload(
