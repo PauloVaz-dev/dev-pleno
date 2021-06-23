@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import CategoryModule from './category/category.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
-import ProductModule from './product/product.module';
-import BrandModule from './brand/brand.module';
+import ProjectModule from './projects/project.module';
+import StreamServerModule from './servers/stream-server.module';
+import { AccountModule } from './accounts/account.module';
 
 @Module({
   imports: [
@@ -14,20 +14,24 @@ import BrandModule from './brand/brand.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get('DATABASE_URL'),
+        type: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: 'serbinario',
+        database: 'devpleno-octor',
         autoLoadEntities: true,
-        synchronize: false,
-        logging: false,
+        synchronize: true,
+        logging: true,
       }),
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    CategoryModule,
     UserModule,
-    //ProductModule,
-    //BrandModule,
+    StreamServerModule,
+    ProjectModule,
+    AccountModule,
   ],
 })
 export class AppModule {}

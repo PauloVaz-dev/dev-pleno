@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## DevShop API is the Backend code for DevShop
 
 ## Installation
 
@@ -61,14 +61,12 @@ $ npm run test:cov
 ## Database Migrations
 
 ```bash
-# generate a new migration synchronizing
-$ npm run test
+# generate a new migration synchronizing entities
+$ npm run typeorm migration: generate -- -n <nameMigration>
 
-# e2e tests
-$ npm run test:e2e
+# sync database running migrations
+$ npm run typeorm migration:run
 
-# test coverage
-$ npm run test:cov
 ```
 
 

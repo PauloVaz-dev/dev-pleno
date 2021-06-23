@@ -35,7 +35,6 @@ export class UserResolver {
 
   @Mutation((returns) => UserDTO)
   async updateUser(@Args('input') input: UserUpdateInputDTO): Promise<UserDTO> {
-    console.log(input);
     const { id } = input;
     return this.userService.update(id, input);
   }

@@ -1,8 +1,12 @@
 require('dotenv').config();
 
 module.exports = {
-  type: 'postgres',
-  url: process.env.DATABASE_URL,
+  type: 'mysql',
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: 'serbinario',
+  database: 'devpleno-octor',
   logging: true,
   entities: ['src/**/*.entity.ts'],
   migrations: ['src/migration/**/*.ts'],
