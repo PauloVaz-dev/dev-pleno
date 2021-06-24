@@ -1,9 +1,10 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { type } from 'os';
 
 @ObjectType()
 export class UserDTO {
-  @Field()
-  id: string;
+  @Field((type) => Int)
+  id: number;
 
   @Field({ nullable: true })
   name: string;

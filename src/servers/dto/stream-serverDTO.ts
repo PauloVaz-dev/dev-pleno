@@ -1,8 +1,8 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class StreamServerDTO {
-  @Field()
+  @Field((type) => Int)
   id: number;
 
   @Field()

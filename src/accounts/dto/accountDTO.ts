@@ -1,10 +1,10 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { ProjectDTO } from 'src/projects/dto/projectDTO';
 import { StreamServerDTO } from 'src/servers/dto/stream-serverDTO';
 
 @ObjectType()
 export class AccountDTO {
-  @Field({ nullable: true })
+  @Field((type) => Int, { nullable: true })
   id: number;
 
   @Field({ nullable: true })

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserModule } from './user/user.module';
+import { UserModule } from './users/user.module';
 import ProjectModule from './projects/project.module';
 import StreamServerModule from './servers/stream-server.module';
 import { AccountModule } from './accounts/account.module';
@@ -28,7 +28,7 @@ import { AccountModule } from './accounts/account.module';
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    UserModule,
+    //UserModule,
     StreamServerModule,
     ProjectModule,
     AccountModule,

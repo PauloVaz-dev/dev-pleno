@@ -1,3 +1,4 @@
+import { String } from 'aws-sdk/clients/appstream';
 import {
   Column,
   CreateDateColumn,
@@ -10,8 +11,8 @@ import {
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ length: 250, nullable: false })
   name: string;
@@ -25,8 +26,8 @@ export class User {
   @Column({ length: 250, nullable: true })
   role: string;
 
-  @Column({ type: 'timestamp', nullable: true })
-  lastLogin: Date;
+  @Column({ length: 250, nullable: true })
+  accounts_handled: string;
 
   @CreateDateColumn()
   created_at: Date;
