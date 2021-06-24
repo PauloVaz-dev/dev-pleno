@@ -26,6 +26,10 @@ function CreateMicrofone(color = 'black') {
   };
 }
 
+function createAnimal() {
+  console.log('aaaaaaa');
+}
+
 const microfoneBack = CreateMicrofone();
 const microfoneRed = CreateMicrofone('red');
 
