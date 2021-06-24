@@ -30,7 +30,10 @@ function createAnimal() {
   console.log('aaaaaaa');
 }
 
+
+
 function createAnimal2() {
+
   console.log('aaaaaaa');
 }
 
