@@ -30,6 +30,10 @@ function createAnimal() {
   console.log('aaaaaaa');
 }
 
+function createAnimal2() {
+  console.log('aaaaaaa');
+}
+
 const microfoneBack = CreateMicrofone();
 const microfoneRed = CreateMicrofone('red');
 
