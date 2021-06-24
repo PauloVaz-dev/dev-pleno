@@ -13,13 +13,13 @@ export class UserEmailIsUnique implements ValidatorConstraintInterface {
     validationArguments: ValidationArguments,
   ): Promise<boolean> {
     const id = validationArguments.object['id'];
-    const category = await this.userService.findByEmail(text);
-    if (category) {
-      if (id === category.id) {
-        return true;
-      }
-      return false;
-    }
+    // const category = await this.userService.findByEmail(text);
+    // if (category) {
+    //   if (id === category.id) {
+    //     return true;
+    //   }
+    //   return false;
+    // }
     return true;
   }
 
