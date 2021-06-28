@@ -18,8 +18,9 @@ export class AccountResolver {
   }
 
   @Query((returns) => [AccountDTOAll])
-  async getAllAccounts(): Promise<AccountDTOAll[]> {
+  async getAllAccounts(): Promise<AccountDTO[]> {
     const accounts = await this.accountService.findAll();
+    console.log(accounts);
     return accounts;
   }
 

@@ -53,6 +53,13 @@ export class UserService {
 
   async update(id: number, input: IRequest): Promise<User> {
     const { name, email, role } = input;
+
+    const checkUserExists = await this.userRepository.findById(id);
+
+    if (checkUserExists === null) {
+      throw new Error('User is not exists.');
+    }
+
     const user = await this.userRepository.save({
       id,
       name,

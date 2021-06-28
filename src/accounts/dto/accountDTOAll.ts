@@ -18,8 +18,8 @@ export class AccountDTOAll {
   @Field({ nullable: true })
   streamServer?: StreamServerDTO;
 
-  @Field({ nullable: true })
-  cameras?: CameraDTO;
+  @Field((type) => [CameraDTO], { nullable: true })
+  cameras?: CameraDTO[];
 
   @Field({ nullable: true })
   remote_account?: string;

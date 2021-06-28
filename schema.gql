@@ -39,7 +39,7 @@ type AccountDTOAll {
   name: String!
   project: ProjectDTO
   streamServer: StreamServerDTO
-  cameras: CameraDTO
+  cameras: [CameraDTO!]
   remote_account: String
 }
 

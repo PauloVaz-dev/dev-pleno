@@ -26,8 +26,9 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
-  async findById(id: number): Promise<User> {
-    return await this.repository.findOne(id);
+  async findById(id: number): Promise<User | null> {
+    const user = await this.repository.findOne(id);
+    return user || null;
   }
   async create({ name, email, password, role }: ICreateUser): Promise<User> {
     const user = this.repository.create({

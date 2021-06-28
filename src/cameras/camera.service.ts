@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { IAccountRepository } from 'src/accounts/repositories/account.repository.interface';
 import { Camera } from './infra/typeorm/entities/camera.entity';
 import { ICameraRepository } from './repositories/camera.repository.interface';
 
@@ -14,6 +15,8 @@ export class CameraService {
   constructor(
     @Inject('CameraRepositoryInterface')
     private cameraRepository: ICameraRepository,
+    @Inject('AccountRepositoryInterface')
+    private accountRepository: IAccountRepository,
   ) {}
 
   async findAll(): Promise<Camera[]> {
@@ -21,13 +24,19 @@ export class CameraService {
     return accounts;
   }
 
-  async findByName(name: string): Promise<Camera[]> {
-    const accounts = await this.cameraRepository.findByStream(name);
-    return accounts;
+  async findByName(name: string): Promise<Camera> {
+    const camera = await this.cameraRepository.findByStream(name);
+    return camera;
   }
 
   async create(input: IRequest): Promise<Camera> {
     const { streamid, url, account } = input;
+
+    const checkAccountExists = await this.accountRepository.findById(account);
+
+    if (!checkAccountExists) {
+      throw new Error('Account is not exists.');
+    }
 
     const checkStreamExists = await this.cameraRepository.findByStream(
       streamid,
@@ -45,7 +54,7 @@ export class CameraService {
     const checkAccountExists = await this.cameraRepository.findById(id);
 
     if (!checkAccountExists) {
-      throw new Error('Account is not exists.');
+      throw new Error('Camera is not exists.');
     }
 
     const product = await this.cameraRepository.save({
@@ -58,10 +67,10 @@ export class CameraService {
   }
 
   async delete(id: number): Promise<boolean> {
-    const checkProductExists = await this.cameraRepository.findById(id);
+    const checkCameraExists = await this.cameraRepository.findById(id);
 
-    if (!checkProductExists) {
-      throw new Error('Account is not exists.');
+    if (!checkCameraExists) {
+      throw new Error('Camera is not exists.');
     }
     try {
       await this.cameraRepository.delete(id);

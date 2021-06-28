@@ -11,7 +11,7 @@ export interface ICreateCamera {
 
 export interface ICameraRepository {
   find(): Promise<Camera[]>;
-  findByStream(name: string): Promise<Camera[]>;
+  findByStream(name: string): Promise<Camera>;
   findById(id: number): Promise<Camera>;
   create(input: ICreateCamera): Promise<Camera>;
   delete(id: number): Promise<boolean>;

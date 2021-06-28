@@ -15,8 +15,8 @@ export class CameraRepository implements ICameraRepository {
     private readonly repository: Repository<Camera>,
   ) {}
 
-  async findByStream(name: string): Promise<Camera[]> {
-    return this.repository.find({
+  async findByStream(name: string): Promise<Camera> {
+    return this.repository.findOne({
       where: { streamid: name },
     });
   }
