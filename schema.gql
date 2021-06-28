@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type UserDTO {
+  id: Int!
+  name: String
+  email: String
+  role: String
+}
+
 type ProjectDTO {
   id: Int!
   name: String!
@@ -13,20 +20,41 @@ type StreamServerDTO {
 }
 
 type AccountDTO {
-  id: Int
-  name: String
+  id: Int!
+  name: String!
   project: ProjectDTO
   streamServer: StreamServerDTO
   remote_account: String
 }
 
+type CameraDTO {
+  id: Int
+  streamid: String
+  url: String
+  account: AccountDTO
+}
+
+type AccountDTOAll {
+  id: Int!
+  name: String!
+  project: ProjectDTO
+  streamServer: StreamServerDTO
+  cameras: CameraDTO
+  remote_account: String
+}
+
 type Query {
+  getAllCameras: [CameraDTO!]!
   getAllProjects: [ProjectDTO!]!
-  getAllAccounts: [AccountDTO!]!
+  getAllAccounts: [AccountDTOAll!]!
   getAccountByName(name: String!): [AccountDTO!]!
+  getAllUsers: [UserDTO!]!
 }
 
 type Mutation {
+  createCamera(input: CameraCreateInput!): CameraDTO!
+  updateCamera(input: CameraUpdateInput!): CameraDTO!
+  deleteCamera(id: Float!): Boolean!
   deleteStreamServer(id: Float!): Boolean!
   updateStreamServer(input: StreamServerUpdateInputDTO!): StreamServerDTO!
   createProject(input: ProjectCreateInputDTO!): ProjectDTO!
@@ -35,6 +63,22 @@ type Mutation {
   createAccount(input: AccountCreateInput!): AccountDTO!
   updateAccount(input: AccountUpdateInput!): AccountDTO!
   deleteAccount(id: Float!): Boolean!
+  createUser(input: UserCreateInputDTO!): UserDTO!
+  updateUser(input: UserUpdateInputDTO!): UserDTO!
+  deleteUser(id: Float!): Boolean!
+}
+
+input CameraCreateInput {
+  streamid: String
+  url: String
+  account: Float
+}
+
+input CameraUpdateInput {
+  id: Int!
+  streamid: String
+  url: String
+  account: Float
 }
 
 input StreamServerUpdateInputDTO {
@@ -64,4 +108,19 @@ input AccountUpdateInput {
   project: Int!
   server: Int
   remote_account: String
+}
+
+input UserCreateInputDTO {
+  name: String!
+  email: String!
+  password: String!
+  role: String!
+}
+
+input UserUpdateInputDTO {
+  id: Int!
+  name: String!
+  email: String!
+  role: String!
+  password: String
 }

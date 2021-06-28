@@ -25,10 +25,14 @@ export class AccountRepository implements IAccountRepository {
   }
 
   async find(): Promise<Account[]> {
+    // const accounts = await this.repository.find({
+    //   relations: ['project', 'streamServer', 'cameras'],
+    // });
     const productsQuery = this.repository
       .createQueryBuilder('account')
       .leftJoinAndSelect('account.project', 'projects')
-      .leftJoinAndSelect('account.streamServer', 'streamServer');
+      .leftJoinAndSelect('account.streamServer', 'streamServer')
+      .leftJoinAndSelect('account.cameras', 'cameras');
 
     const accounts = await productsQuery.getMany();
 

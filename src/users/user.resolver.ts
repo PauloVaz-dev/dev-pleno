@@ -4,6 +4,7 @@ import { UserDTO } from './dto/userDTO';
 //import { UserMapper } from './user.mapper';
 import { UserCreateInputDTO } from './dto/user-create-inputDTO';
 import { UserUpdateInputDTO } from './dto/user-update-inputDTO';
+import { identity } from 'rxjs';
 
 interface RequestDTO {
   name: string;
@@ -16,31 +17,24 @@ interface RequestDTO {
 export class UserResolver {
   constructor(private userService: UserService) {}
 
-  //   @Query((returns) => UserDTO)
-  //   async getUserById(@Args('id') input: string): Promise<UserDTO> {
-  //     return await this.userService.findById(input);
-  //   }
+  @Query((returns) => [UserDTO])
+  async getAllUsers(): Promise<UserDTO[]> {
+    return await this.userService.findAll();
+  }
 
-  //   @Query((returns) => [UserDTO])
-  //   async getAllUsers(): Promise<UserDTO[]> {
-  //     return await this.userService.findAll();
-  //   }
+  @Mutation((returns) => UserDTO)
+  async createUser(@Args('input') input: UserCreateInputDTO): Promise<UserDTO> {
+    return await this.userService.create(input);
+  }
 
-  //   @Mutation((returns) => UserDTO)
-  //   async createUser(@Args('input') input: UserCreateInputDTO): Promise<UserDTO> {
-  //     return this.userService.create({
-  //       ...input,
-  //     });
-  //   }
+  @Mutation((returns) => UserDTO)
+  async updateUser(@Args('input') input: UserUpdateInputDTO): Promise<UserDTO> {
+    const { id } = input;
+    return this.userService.update(id, input);
+  }
 
-  //   @Mutation((returns) => UserDTO)
-  //   async updateUser(@Args('input') input: UserUpdateInputDTO): Promise<UserDTO> {
-  //     const { id } = input;
-  //     return this.userService.update(id, input);
-  //   }
-
-  //   @Mutation((returns) => Boolean)
-  //   async deleteUser(@Args('id') input: string): Promise<boolean> {
-  //     return this.userService.delete(input);
-  //   }
+  @Mutation((returns) => Boolean)
+  async deleteUser(@Args('id') id: number): Promise<boolean> {
+    return this.userService.delete(id);
+  }
 }

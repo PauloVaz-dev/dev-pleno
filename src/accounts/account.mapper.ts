@@ -1,38 +1,12 @@
-// export class ProductMapper {
-//   public static toEntity(input: ProductCreateInput): Product {
-//     const entity = new Product();
-//     entity.name = input.name;
-//     entity.slug = input.slug;
-//     entity.description = input.description;
+import { CameraDTO } from 'src/cameras/dto/cameraDTO';
+import { Camera } from 'src/cameras/infra/typeorm/entities/camera.entity';
 
-//     const category = new Category();
-//     category.id = input.category;
-//     entity.category = category;
-//     return entity;
-//   }
-
-//   public static updatedToEntity(input: ProductUpdateInput): Product {
-//     const entity = new Product();
-//     entity.id = input.id;
-//     entity.name = input.name;
-//     entity.slug = input.slug;
-//     entity.description = input.description;
-
-//     const category = new Category();
-
-//     category.id = input.category;
-//     entity.category = category;
-
-//     return entity;
-//   }
-
-//   public static fromEntityToPublic(input: Product): ProductDTO {
-//     const entity = new ProductDTO();
-//     entity.id = input.id;
-//     entity.name = input.name;
-//     entity.slug = input.slug;
-//     entity.description = input.description;
-//     entity.category = input.category;
-//     return entity;
-//   }
-// }
+export class AccountMapper {
+  public static fromEntityToPublic(input: Camera): CameraDTO {
+    const entity = new Camera();
+    entity.id = input.id;
+    entity.streamid = input.streamid;
+    entity.url = input.url;
+    return entity;
+  }
+}

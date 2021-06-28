@@ -1,5 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
 
+enum rolesType {
+  root = 'root',
+  admin = 'admin',
+}
+
 @InputType()
 export class UserCreateInputDTO {
   @Field()
@@ -12,5 +17,5 @@ export class UserCreateInputDTO {
   password: string;
 
   @Field()
-  role: string;
+  role: rolesType;
 }

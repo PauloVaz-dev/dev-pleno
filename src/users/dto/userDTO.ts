@@ -14,7 +14,4 @@ export class UserDTO {
 
   @Field({ nullable: true })
   role: string;
-
-  @Field({ nullable: true })
-  password: string;
 }

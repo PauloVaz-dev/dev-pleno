@@ -3,6 +3,11 @@ import { IsEmail, IsUUID, Validate } from 'class-validator';
 import { type } from 'os';
 import { UserEmailIsUnique } from '../validations/UserEmailIsUnique';
 
+enum rolesType {
+  root = 'root',
+  admin = 'admin',
+}
+
 @InputType()
 export class UserUpdateInputDTO {
   @Field((type) => Int)
@@ -17,8 +22,8 @@ export class UserUpdateInputDTO {
   email: string;
 
   @Field()
-  role: string;
+  role: rolesType;
 
-  @Field()
+  @Field({ nullable: true })
   password: string;
 }

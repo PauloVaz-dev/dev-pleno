@@ -9,6 +9,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+enum rolesType {
+  root = 'root',
+  admin = 'admin',
+}
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -17,14 +22,14 @@ export class User {
   @Column({ length: 250, nullable: false })
   name: string;
 
-  @Column({ length: 250, nullable: true })
+  @Column({ length: 250, nullable: false })
   email: string;
 
-  @Column({ length: 250, nullable: true })
+  @Column({ length: 250, nullable: false })
   password: string;
 
-  @Column({ length: 250, nullable: true })
-  role: string;
+  @Column({ type: 'enum', enum: rolesType })
+  role: rolesType;
 
   @Column({ length: 250, nullable: true })
   accounts_handled: string;

@@ -6,6 +6,7 @@ import { UserModule } from './users/user.module';
 import ProjectModule from './projects/project.module';
 import StreamServerModule from './servers/stream-server.module';
 import { AccountModule } from './accounts/account.module';
+import { CameraModule } from './cameras/camera.module';
 
 @Module({
   imports: [
@@ -28,10 +29,11 @@ import { AccountModule } from './accounts/account.module';
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    //UserModule,
+    CameraModule,
     StreamServerModule,
     ProjectModule,
     AccountModule,
+    UserModule,
   ],
 })
 export class AppModule {}

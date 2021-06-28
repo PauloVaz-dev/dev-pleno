@@ -1,14 +1,14 @@
-import { integer } from 'aws-sdk/clients/cloudfront';
 import { Project } from 'src/projects/infra/typeorm/entities/project.entity';
 import { StreamServer } from 'src/servers/infra/typeorm/entities/stream-server.entity';
+import { Camera } from 'src/cameras/infra/typeorm/entities/camera.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { v4 as uuidV4 } from 'uuid';
 
 @Entity()
 export class Account {
@@ -29,10 +29,9 @@ export class Account {
   @JoinColumn({ name: 'server_id', referencedColumnName: 'id' })
   streamServer?: StreamServer;
 
+  @OneToMany((type) => Camera, (camera) => camera.account)
+  cameras?: Camera[];
+
   @Column({ nullable: true })
   server_id?: number;
-
-  //   constructor() {
-  //     if (!this.id) this.id = uuidV4();
-  //   }
 }

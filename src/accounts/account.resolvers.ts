@@ -3,6 +3,8 @@ import { AccountService } from './account.service';
 import { AccountUpdateInput } from './dto/account-update.input';
 import { AccountCreateInput } from './dto/account.create.input';
 import { AccountDTO } from './dto/accountDTO';
+import { AccountDTOAll } from './dto/accountDTOAll';
+import { AccountMapper } from './account.mapper';
 
 @Resolver((of) => AccountDTO)
 export class AccountResolver {
@@ -15,8 +17,8 @@ export class AccountResolver {
     return await this.accountService.create(input);
   }
 
-  @Query((returns) => [AccountDTO])
-  async getAllAccounts(): Promise<AccountDTO[]> {
+  @Query((returns) => [AccountDTOAll])
+  async getAllAccounts(): Promise<AccountDTOAll[]> {
     const accounts = await this.accountService.findAll();
     return accounts;
   }

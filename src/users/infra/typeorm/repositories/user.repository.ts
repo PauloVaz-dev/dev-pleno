@@ -14,22 +14,45 @@ export class UserRepository implements IUserRepository {
     @InjectRepository(User)
     private readonly repository: Repository<User>,
   ) {}
-  find(): Promise<User[]> {
-    throw new Error('Method not implemented.');
+
+  async find(): Promise<User[]> {
+    return await this.repository.find();
   }
-  findByName(name: string): Promise<User[]> {
-    throw new Error('Method not implemented.');
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.repository.findOne({
+      where: { email },
+    });
+
+    return user;
   }
-  findById(id: number): Promise<User> {
-    throw new Error('Method not implemented.');
+
+  async findById(id: number): Promise<User> {
+    return await this.repository.findOne(id);
   }
-  create(input: ICreateUser): Promise<User> {
-    throw new Error('Method not implemented.');
+  async create({ name, email, password, role }: ICreateUser): Promise<User> {
+    const user = this.repository.create({
+      name,
+      email,
+      password,
+      role,
+    });
+
+    await this.repository.save(user);
+    return user;
   }
-  delete(id: number): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  async delete(id: number): Promise<boolean> {
+    await this.repository.delete(id);
+    return true;
   }
-  save({ id, name }: ICreateUser): Promise<User> {
-    throw new Error('Method not implemented.');
+
+  async save({ id, name, email, role }: ICreateUser): Promise<User> {
+    const user = await this.repository.save({
+      id,
+      name,
+      email,
+      role,
+    });
+
+    return user;
   }
 }
