@@ -1,4 +1,4 @@
-import { User } from '../infra/typeorm/entities/user.entity';
+import { User, UserRoleType } from '../infra/typeorm/entities/user.entity';
 
 enum rolesType {
   root = 'root',
@@ -9,7 +9,7 @@ export interface ICreateUser {
   name: string;
   email: string;
   password?: string;
-  role: rolesType;
+  role: UserRoleType;
 }
 
 export interface IUserRepository {

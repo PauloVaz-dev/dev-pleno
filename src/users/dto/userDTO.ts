@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { UserRoleType } from '../infra/typeorm/entities/user.entity';
 
 @ObjectType()
 export class UserDTO {
@@ -12,5 +13,5 @@ export class UserDTO {
   email: string;
 
   @Field({ nullable: true })
-  role: string;
+  role: UserRoleType;
 }

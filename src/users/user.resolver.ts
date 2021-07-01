@@ -5,12 +5,13 @@ import { UserDTO } from './dto/userDTO';
 import { UserCreateInputDTO } from './dto/user-create-inputDTO';
 import { UserUpdateInputDTO } from './dto/user-update-inputDTO';
 import { identity } from 'rxjs';
+import { UserRoleType } from './infra/typeorm/entities/user.entity';
 
 interface RequestDTO {
   name: string;
   email: string;
   password: string;
-  role: string;
+  role: UserRoleType;
 }
 
 @Resolver('User')

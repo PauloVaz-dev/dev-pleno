@@ -9,6 +9,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+export type UserRoleType = 'admin' | 'root';
+
 enum rolesType {
   root = 'root',
   admin = 'admin',
@@ -29,7 +31,7 @@ export class User {
   password: string;
 
   @Column({ type: 'enum', enum: rolesType })
-  role: rolesType;
+  role: UserRoleType;
 
   @Column({ length: 250, nullable: true })
   accounts_handled: string;
